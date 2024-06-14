@@ -3,7 +3,9 @@ import React, { useState } from "react";
 import WalletConnect from "./Components/WalletConnect";
 import TokenBalances from "./Components/TokenBalances";
 import MintBurnTokens from "./Components/MintBurnTokens";
+import CSAMMInfo from "./Components/CSAMMInfo";
 import { addLiquidity, swap, removeLiquidity } from "./Components/AMMFunctions";
+import { TOKEN0_ADDRESS, TOKEN1_ADDRESS } from "./config";
 
 function App() {
   const [signer, setSigner] = useState(null);
@@ -16,16 +18,13 @@ function App() {
     await addLiquidity(signer, amount0, amount1);
   };
 
-  const handleSwap = async () => {
-    const tokenInAddress = "0xYourTokenInAddress"; // Set dynamically based on UI input
-    await swap(signer, tokenInAddress, swapAmount);
+  const handleSwap = async (tokenAddress) => {
+    await swap(signer, tokenAddress, swapAmount);
   };
 
   const handleRemoveLiquidity = async () => {
     await removeLiquidity(signer, shares);
   };
-
-  console.log(signer)
 
   return (
     <div>
@@ -34,6 +33,7 @@ function App() {
         <>
           <TokenBalances signer={signer} />
           <MintBurnTokens signer={signer} />
+          <CSAMMInfo signer={signer} />
           <div>
             <h2>Add Liquidity</h2>
             <input
@@ -58,7 +58,12 @@ function App() {
               value={swapAmount}
               onChange={(e) => setSwapAmount(e.target.value)}
             />
-            <button onClick={handleSwap}>Swap</button>
+            <button onClick={() => handleSwap(TOKEN0_ADDRESS)}>
+              Swap Token0
+            </button>
+            <button onClick={() => handleSwap(TOKEN1_ADDRESS)}>
+              Swap Token1
+            </button>
           </div>
           <div>
             <h2>Remove Liquidity</h2>
