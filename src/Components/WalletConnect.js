@@ -21,10 +21,10 @@ const WalletConnect = ({ setSigner }) => {
   };
 
   return (
-    <div>
+    <div className="wallet-connect">
       <button onClick={connectWallet}>Connect Wallet</button>
       {account && <p>Connected Account: {account}</p>}
-      {error && <p>{error}</p>}
+      {error && <p className="error">{error}</p>}
     </div>
   );
 };

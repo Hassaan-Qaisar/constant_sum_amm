@@ -51,7 +51,7 @@ const MintBurnTokens = ({ signer, fetchBalances }) => {
   };
 
   return (
-    <div>
+    <div className="mint-burn-tokens">
       <h2>Mint/Burn Tokens</h2>
       <div>
         <h3>Mint Tokens</h3>

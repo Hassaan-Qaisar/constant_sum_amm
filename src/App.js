@@ -74,7 +74,7 @@ function App() {
   }, [signer, token0Balance, token1Balance, reserve0, reserve1]);
 
   return (
-    <div>
+    <div className="container">
       <WalletConnect setSigner={setSigner} />
       {signer && (
         <>
@@ -84,7 +84,7 @@ function App() {
           />
           <MintBurnTokens signer={signer} fetchBalances={fetchBalances} />
           <CSAMMInfo reserve0={reserve0} reserve1={reserve1} totalSupply={totalSupply} fetchCSAMMInfo={fetchCSAMMInfo} />
-          <div>
+          <div className="add-liquidity">
             <h2>Add Liquidity</h2>
             <input
               type="text"
@@ -100,7 +100,7 @@ function App() {
             />
             <button onClick={handleAddLiquidity}>Add Liquidity</button>
           </div>
-          <div>
+          <div className="swap">
             <h2>Swap</h2>
             <input
               type="text"
@@ -115,7 +115,7 @@ function App() {
               Swap Token1
             </button>
           </div>
-          <div>
+          <div className="remove-liquidity">
             <h2>Remove Liquidity</h2>
             <input
               type="text"
