@@ -22,7 +22,9 @@ const WalletConnect = ({ setSigner }) => {
 
   return (
     <div className="wallet-connect">
+      <div className="button-container">
       <button onClick={connectWallet}>Connect Wallet</button>
+      </div>
       {account && <p>Connected Account: {account}</p>}
       {error && <p className="error">{error}</p>}
     </div>

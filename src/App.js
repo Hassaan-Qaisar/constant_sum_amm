@@ -5,7 +5,13 @@ import TokenBalances from "./Components/TokenBalances";
 import MintBurnTokens from "./Components/MintBurnTokens";
 import CSAMMInfo from "./Components/CSAMMInfo";
 import { addLiquidity, swap, removeLiquidity } from "./Components/AMMFunctions";
-import { TOKEN0_ADDRESS, TOKEN1_ADDRESS, ERC20_ABI, CSAMM_ADDRESS, CSAMM_ABI, } from "./config";
+import {
+  TOKEN0_ADDRESS,
+  TOKEN1_ADDRESS,
+  ERC20_ABI,
+  CSAMM_ADDRESS,
+  CSAMM_ABI,
+} from "./config";
 const { ethers } = require("ethers");
 
 function App() {
@@ -28,12 +34,12 @@ function App() {
 
   const handleSwap = async (tokenAddress) => {
     await swap(signer, tokenAddress, swapAmount, fetchBalances, fetchCSAMMInfo);
-    setSwapAmount("")
+    setSwapAmount("");
   };
 
   const handleRemoveLiquidity = async () => {
     await removeLiquidity(signer, shares, fetchCSAMMInfo);
-    setShares("")
+    setShares("");
   };
 
   const fetchBalances = async () => {
@@ -83,7 +89,12 @@ function App() {
             token1Balance={token1Balance}
           />
           <MintBurnTokens signer={signer} fetchBalances={fetchBalances} />
-          <CSAMMInfo reserve0={reserve0} reserve1={reserve1} totalSupply={totalSupply} fetchCSAMMInfo={fetchCSAMMInfo} />
+          <CSAMMInfo
+            reserve0={reserve0}
+            reserve1={reserve1}
+            totalSupply={totalSupply}
+            fetchCSAMMInfo={fetchCSAMMInfo}
+          />
           <div className="add-liquidity">
             <h2>Add Liquidity</h2>
             <input
@@ -98,7 +109,9 @@ function App() {
               value={amount1}
               onChange={(e) => setAmount1(e.target.value)}
             />
-            <button onClick={handleAddLiquidity}>Add Liquidity</button>
+            <div className="button-container">
+              <button onClick={handleAddLiquidity}>Add Liquidity</button>
+            </div>
           </div>
           <div className="swap">
             <h2>Swap</h2>
@@ -108,12 +121,14 @@ function App() {
               value={swapAmount}
               onChange={(e) => setSwapAmount(e.target.value)}
             />
-            <button onClick={() => handleSwap(TOKEN0_ADDRESS)}>
-              Swap Token0
-            </button>
-            <button onClick={() => handleSwap(TOKEN1_ADDRESS)}>
-              Swap Token1
-            </button>
+            <div className="button-container">
+              <button onClick={() => handleSwap(TOKEN0_ADDRESS)}>
+                Swap Token0
+              </button>
+              <button onClick={() => handleSwap(TOKEN1_ADDRESS)}>
+                Swap Token1
+              </button>
+            </div>
           </div>
           <div className="remove-liquidity">
             <h2>Remove Liquidity</h2>
@@ -123,7 +138,9 @@ function App() {
               value={shares}
               onChange={(e) => setShares(e.target.value)}
             />
-            <button onClick={handleRemoveLiquidity}>Remove Liquidity</button>
+            <div className="button-container">
+              <button onClick={handleRemoveLiquidity}>Remove Liquidity</button>
+            </div>
           </div>
         </>
       )}

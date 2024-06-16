@@ -15,7 +15,7 @@ body {
   border-radius: 8px;
 }
 
-h2 {
+h2, h3 {
   color: #444;
   border-bottom: 2px solid #ddd;
   padding-bottom: 5px;
@@ -27,6 +27,15 @@ input[type="text"] {
   border: 1px solid #ccc;
   border-radius: 4px;
   width: calc(100% - 22px);
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.button-container button {
+  margin-right: 6px; 
 }
 
 button {
