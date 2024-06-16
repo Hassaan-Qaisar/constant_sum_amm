@@ -1,26 +1,53 @@
-import React, { useState } from 'react';
-import { TOKEN0_ADDRESS, TOKEN1_ADDRESS, ERC20_ABI } from '../config';
+import React, { useState } from "react";
+import { TOKEN0_ADDRESS, TOKEN1_ADDRESS, ERC20_ABI } from "../config";
 
 const { ethers } = require("ethers");
 
-const MintBurnTokens = ({ signer }) => {
-  const [mintAmount, setMintAmount] = useState('');
-  const [burnAmount, setBurnAmount] = useState('');
+const MintBurnTokens = ({ signer, fetchBalances }) => {
+  const [mintAmount, setMintAmount] = useState("");
+  const [burnAmount, setBurnAmount] = useState("");
 
   const mintTokens = async (tokenAddress) => {
-    const token = new ethers.Contract(tokenAddress, ERC20_ABI, signer);
-    // const tx = await token.mint(ethers.parseUnits(mintAmount, 18));
-    const tx = await token.mint(mintAmount);
-    await tx.wait();
-    alert('Tokens minted successfully');
+    try {
+      const token = new ethers.Contract(tokenAddress, ERC20_ABI, signer);
+      const tx = await token.mint(mintAmount);
+
+      const receipt = await tx.wait();
+      if (receipt.status === 1) {
+        alert("Tokens minted successfully");
+        console.log("mint success")
+        fetchBalances(); 
+        setMintAmount("");
+      } else {
+        alert("Transaction failed");
+        console.log("mint failed")
+      }
+    } catch (error) {
+      console.error("Minting failed", error);
+      console.log("mint error")
+      alert(`Minting failed: ${error.message}`);
+    }
   };
 
   const burnTokens = async (tokenAddress) => {
+    try {
     const token = new ethers.Contract(tokenAddress, ERC20_ABI, signer);
-    // const tx = await token.burn(ethers.parseUnits(burnAmount, 18));
     const tx = await token.burn(burnAmount);
-    await tx.wait();
-    alert('Tokens burned successfully');
+
+    const receipt = await tx.wait();
+    if (receipt.status === 1) {
+      alert('Tokens burned successfully');
+      console.log("burn success")
+      fetchBalances(); 
+      setBurnAmount("");
+    } else {
+      alert('Transaction failed');
+      console.log("burn failed")
+    }
+  } catch (error) {
+    console.error("Burning failed", error);
+    alert(`Burning failed: ${error.message}`);
+  }
   };
 
   return (
