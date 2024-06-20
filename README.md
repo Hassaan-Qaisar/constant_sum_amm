@@ -1,70 +1,107 @@
-# Getting Started with Create React App
+# Constant Sum AMM
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
 
-## Available Scripts
+- [Introduction](#introduction)
+- [Project Structure](#project-structure)
+- [Features](#features)
+- [Technologies](#technologies)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Testing](#testing)
+- [Contributing](#contributing)
 
-In the project directory, you can run:
+## Introduction
 
-### `npm start`
+The Constant Sum AMM is a simple "Constant Sum - Automated Market Maker" allowing liquidity providers to add assets and users to exchange one asset for another with a 5% transaction fee. The frontend is built with React, and the smart contracts are written in Solidity and deployed on the Ethereum testnet. Forge Foundry is used for setup, building, and testing the project.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Project Structure
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The repository is organized into the following folders:
 
-### `npm test`
+- `home directory`: Contains the React frontend of the application.
+- `solidity`: Contains the Solidity smart contract files:
+  - `CSAMM.sol`
+  - `ERC20.sol`
+  - `IERC20.sol`
+- `foundry`: Contains the test cases and setup for Forge Foundry.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
 
-### `npm run build`
+- Add assets by liquidity providers
+- Exchange one asset for another with a 5% transaction fee
+- Deploy and interact with ERC20 tokens
+- Smart contract testing using Forge Foundry
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Technologies
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Frontend**: React
+- **Smart Contracts**: Solidity
+- **Testing and Deployment**: Forge Foundry
+- **Blockchain**: Ethereum testnet
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Installation
 
-### `npm run eject`
+To set up and run the project locally, follow these steps:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Prerequisites
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Node.js and npm installed
+- MetaMask extension installed in your browser
+- Ethereum wallet with some test seploia (e.g., from a testnet faucet)
+- Forge Foundry installed
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Smart Contract Setup
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/Hassaan-Qaisar/constant_sum_amm
+    cd constant_sum_amm
+    ```
 
-## Learn More
+2. Navigate to the `solidity` directory and install dependencies:
+    ```bash
+    cd contracts
+    forge install
+    ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. Compile and deploy the smart contracts:
+    ```bash
+    forge build
+    ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. Deploy two ERC20 tokens and note their addresses. Provide these addresses to the `CSAMM` contract.
 
-### Code Splitting
+### Frontend Setup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. Navigate to the home directory, install dependencies, and start the React frontend:
+    ```bash
+    npm install
+    npm start
+    ```
 
-### Analyzing the Bundle Size
+## Usage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Interact with the Application
 
-### Making a Progressive Web App
+1. Open your browser and navigate to `http://localhost:3000`.
+2. Connect your MetaMask wallet to the application.
+3. Use the interface to add liquidity and exchange assets.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Testing
 
-### Advanced Configuration
+1. Navigate to the `foundry` directory and run the tests:
+    ```bash
+    cd ../foundry/hello_foundary
+    forge test
+    ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Contributing
 
-### Deployment
+Contributions are welcome! If you would like to contribute to this repository, please follow these steps:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-name`).
+3. Commit your changes (`git commit -am 'Add new feature'`).
+4. Push to the branch (`git push origin feature-name`).
+5. Create a new Pull Request.
